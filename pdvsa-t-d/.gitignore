@@ -1,0 +1,11 @@
+
+# PyBuilder
+*.pyc
+control/migrations/*
+core/migrations/*
+.project
+.pydevproject
+.settings
+
+!control/migrations/__init__.py
+!core/migrations/__init__.py

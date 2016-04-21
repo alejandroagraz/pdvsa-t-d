@@ -1,0 +1,89 @@
+{% extends 'base.html'%}
+{% load staticfiles %}
+{% block title%}
+PDVSA GAS
+{% endblock title%}
+{% block content%}
+
+<h3 class="center">
+TABLA DE PLANIFICACIÓN Y EJECUCIÓN MENSUAL
+</h3>
+<div style="width:130%; margin-left: -15%;" class="tabla">
+ <form action="" class="F-valid">
+ <table border="1"
+		cellspacing="0"
+		cellpadding="4" style="width: 100%;">
+
+			<caption>{{tipo}} / {{nombre}}</caption>
+
+			
+	<thead>
+     		<tr>
+				<th style="background-color: #E2001B; text-align: center;"  colspan="3">Plan de Operaciones</th>
+				<th style="background-color: #E2001B; text-align: center;"  colspan="14">Candelarización de Metas</th>
+			</tr>
+
+			<tr>
+				<th>Actividad General</th>
+				<th>Unidad</th>
+				<th>PLANIFICACION</th>
+				<th>Enero</th>
+				<th>Febrero</th>
+				<th>Marzo</th>
+				<th>Abril</th>
+				<th>Mayo</th>
+				<th>Junio</th>
+				<th>Julio</th>
+				<th>Agosto</th>
+				<th>Septiembre</th>
+				<th>Octubre</th>
+				<th>Noviembre</th>
+				<th>Diciembre</th>
+				<th>Total</th>
+			</tr>
+
+	 </thead>
+
+				{% for act in actividades%}
+				<tr>
+				<td>{{act.actividad.nombre}}</td>
+				<td>{{act.actividad.unidad}}</td>
+				<td align="center">PLAN SAP<br/>PLAN META<br/>REAL<br/>PLAN HH<br/>REAL-HH</td>
+				
+				{% for pl in planificaciones %}
+				{% if pl.actividad.id == act.actividad.id %}
+				<td align="center">
+ <input value="{{pl.get_plan_sap}}"  data-id="{{pl.id}}" data-tipo="plan_sap"   class="PLAN-SAP-{{act.actividad.id}} datos"  	data-actividad="{{act.actividad.id}}" data-mes="{{pl.mes}}"  onKeyUp="fncSumar(this)" autofocus="autofocus" /> 
+ <input value="{{pl.get_plan_meta}}" data-id="{{pl.id}}" data-tipo="plan_meta" 	class="PLAN-META-{{act.actividad.id}} datos"  	data-actividad="{{act.actividad.id}}" data-mes="{{pl.mes}}"  onKeyUp="fncSumar(this)" /> 
+ <input value="{{pl.get_real_mc}}" 	 data-id="{{pl.id}}" data-tipo="real_mc"  	class="REAL-{{act.actividad.id}} datos"  		data-actividad="{{act.actividad.id}}" data-mes="{{pl.mes}}"  onKeyUp="fncSumar(this)" /> 
+ <input value="{{pl.get_plan_hh}}" 	 data-id="{{pl.id}}" data-tipo="plan_hh"  	class="PLAN-HH-{{act.actividad.id}} datos" 		data-actividad="{{act.actividad.id}}" data-mes="{{pl.mes}}"  onKeyUp="fncSumar(this)" /> 
+ <input value="{{pl.get_real_hh}}" 	 data-id="{{pl.id}}" data-tipo="real_hh"  	class="REAL-HH-{{act.actividad.id}} datos" 		data-actividad="{{act.actividad.id}}" data-mes="{{pl.mes}}"  onKeyUp="fncSumar(this)" /> 
+				</td>
+				{% endif%}
+				{% endfor%}
+				
+				 <td align="center">
+				 <input value="0" disabled="disabled"  type="number" id="PLAN-SAP-{{act.actividad.id}}" /> 
+				 <input value="0" disabled="disabled"  type="number" id="PLAN-META-{{act.actividad.id}}" /> 
+				 <input value="0" disabled="disabled" type="number" id="REAL-{{act.actividad.id}}"/> 
+				 <input value="0" disabled="disabled" type="number" id="PLAN-HH-{{act.actividad.id}}" />
+				 <input value="0" disabled="disabled" type="number" id="REAL-HH-{{act.actividad.id}}" /> 
+				  </td>
+				  
+				</tr>
+				{% endfor %}
+	
+
+
+
+			
+			<tr>
+			<td colspan="17" align="center">
+			<button id="btn_save_table" class="btn btn-ttc  btn-lg btn-primary">Guardar<span class="glyphicon glyphicon-floppy-disk"></span></button>	
+			</td>
+			</tr>
+			
+		</table>
+		</form>
+</div>
+{% endblock content%}

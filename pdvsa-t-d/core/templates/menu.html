@@ -1,0 +1,47 @@
+{% load staticfiles %}
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">    
+      <a class="navbar-brand" href="#"> 
+      <img width="100px" style="margin-top: -23px" height="50px" alt="PDVSA" src="{% static 'img/logo.png' %}"></a>
+    </div>
+			{% load system_tags %}
+
+    <div class="collapse navbar-collapse" id="navbar-collapse-1">
+      <ul class="nav navbar-nav">
+			{% generar_menu %}
+         <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Transporte y Distribucion <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Resumen</a></li>
+            <li><a href="#">Graficos</a></li>
+          </ul>
+        </li>
+        <li>
+        <a href="#">Contacto</a>
+        </li>
+      </ul>
+   
+      
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{ request.user.first_name }} {{ request.user.last_name }} <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+        	<li><a href="#"><i class="glyphicon glyphicon-user"></i> Tus Datos</a></li>
+            <li class="divider"></li>
+            <li><a href="#"> <i class="glyphicon glyphicon-pencil"></i> Cambiar Contraseña</a></li>
+            <li class="divider"></li>
+            <li><a href="{% url 'add_actividad' %}"> <i class="glyphicon glyphicon-plus-sign"></i> Registro de Actividades</a></li>
+             <li><a href="{% url 'add_proceso' %}"> <i class="glyphicon glyphicon-cog"></i> Registro de Procesos</a></li>
+            <li class="divider"></li>
+            <li><a href="{% url 'logout' %}"> <i class="glyphicon glyphicon-off"></i> Salir</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+  
+  
+
+  
+</nav>

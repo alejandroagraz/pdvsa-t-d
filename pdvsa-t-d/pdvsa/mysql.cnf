@@ -1,0 +1,15 @@
+sudo apt-get install python-pip
+sudo apt-get install libmysqlclient-dev
+sudo apt-get install python-virtualenv
+virtualenv pdvsaenv  
+source pdvsaenv/bin/activate
+virtualenv activo
+
+pip install django
+pip install XlsxWriter
+pip install mysql-connector-python         
+pip install mysql-python
+./manage.py syncdb
+./manage.py migrate
+./manage.py makemigrations
+nohup.out ./manage.py runserver IPservidor:puerto

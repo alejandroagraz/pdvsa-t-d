@@ -1,0 +1,5 @@
+django==1.8
+psycopg2
+xhtml2pdf
+django-easy-pdf
+xlsxwriter

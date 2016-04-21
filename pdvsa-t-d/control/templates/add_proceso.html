@@ -1,0 +1,68 @@
+{% extends 'base.html'%}
+{% load staticfiles %}
+{% block title%}
+PDVSA GAS Registro de Actividades
+{% endblock title%}
+{% block content%}
+
+<h3 class="center">
+REGISTRO DE PROCESOS
+</h3>
+  {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <div {% if message.tags %} class="{{ message.tags }} alert-dismissible" {% endif %} role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong>{{ message }}!</strong>
+    </div>
+    {% endfor %}
+</ul>
+{% endif %}
+
+	<form action="" id="FnewEstudiante"  method="POST" class="F-valid">
+			{% csrf_token %}
+			<div class="panel panel-default form-SMC">
+				<div class="panel-body">
+					<div class="content">
+						
+						<div class="form-group">
+							<label class="col-md-3">Nombre:</label>
+							<div class="col-md-9">
+							<input type="text" name="nombre"  value="{{nombre}}" placeholder="Nombre" class="form-control" required="required" autofocus="autofocus">
+							</div>
+						</div>
+						<br>
+						<br>					
+						<div class="form-group">
+							<label class="col-md-3">Tipo:</label>
+							<div class="col-md-9">
+							<select name="tipo" class="form-control" required="required">
+							<option>
+							<option {% if tipo == 'TRANSPORTE' %} selected="selected" {% endif %} value="TRANSPORTE">TRANSPORTE</option>
+							<option {% if tipo == 'DISTRIBUCION' %} selected="selected" {% endif %} value="DISTRIBUCION">DISTRIBUCION</option>
+							</select>
+							</div>
+						</div>
+						<br>
+						<br>
+						<div class="form-group">
+							<label class="col-md-3">Descripcion:</label>
+							<div class="col-md-9">
+							<textarea name="descripcion"  placeholder="Descripcion" class="form-control" required="required" >
+							{{descripcion}}
+							</textarea>
+							</div>
+						</div>
+						<br>
+						<br>
+						<br>
+						<div style="margin: auto;text-align: center;">
+							<button  type="submit" class="btn btn-primary btn-ttc">Guardar <i class="glyphicon glyphicon-floppy-save"></i></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+
+  
+{% endblock content%}

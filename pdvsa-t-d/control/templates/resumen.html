@@ -1,0 +1,63 @@
+{% extends 'base.html'%}
+{% load staticfiles %}
+{% block title%}
+PDVSA GAS
+{% endblock title%}
+{% block content%}
+
+<h3 class="center">
+TABLA DE RESUMEN {{periodo}} ({{tipo}})
+</h3>
+<div style="width:130%; margin-left: -15%;" class="tabla">
+ <form action="" class="F-valid">
+ <table border="1"
+		cellspacing="0"
+		cellpadding="4" style="width: 100%;">
+	<thead>
+
+			<tr>
+				<th style="background-color: #E2001B; text-align: center;color: white; width: 10%;">Ponderacion</th>
+				<th style="background-color: #E2001B; text-align: center;color: white;width: 30%;">Actividades</th>
+				<th style="background-color: #E2001B; text-align: center;color: white;width: 5%;">Unidad</th>
+				<th style="background-color: #E2001B; text-align: center;color: white;width: 10%;">% Plan Sap</th>
+				<th style="background-color: #E2001B; text-align: center;color: white;width: 10%;" >% Plan Meta</th>
+				<th style="background-color: #E2001B; text-align: center;color: white;width: 10%;" >Total Real HorasH</th>
+				<th style="background-color: #E2001B; text-align: center;color: white;width: 10%;">Avance Ponderado</th>
+				
+			</tr>
+
+	 </thead>
+
+				{% for a in list_actividades%}
+				<tr>
+				<td align="center">{{a.ponderacion}}%</td>
+				<td align="center">{{a.nombre}}</td>
+				<td align="center">{{a.unidad}}</td>
+				<td align="center"><input disabled="disabled" value="{{a.plan_sap}}"></td>
+				<td align="center"><input disabled="disabled" value="{{a.plan_meta}}"></td>
+				<td align="center"><input disabled="disabled" value="{{a.total_real_hh}}"></td>
+				<td align="center"><input disabled="disabled" value="{{a.avance_ponderado}}"></td>
+				</tr>
+				{% endfor%}
+				
+		
+				  
+
+
+			
+			<tr>
+			<td colspan="17" align="center">
+			{%if periodo == 'ANUAL' %}
+			<a class="btn btn-ttc  btn-lg btn-primary" href="{{request.path}}Resumen_anual.xlsx">
+			{% else %}
+			<a class="btn btn-ttc  btn-lg btn-primary" href="{{request.path}}Resumen.xlsx">
+			{% endif %}
+			Exportar<span class="glyphicon glyphicon-duplicate"></span>
+			</a>
+			</td>
+			</tr>
+			
+		</table>
+		</form>
+</div>
+{% endblock content%}

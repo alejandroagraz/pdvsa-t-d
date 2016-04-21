@@ -1,0 +1,44 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head lang="es">
+<meta charset="UTF-8">
+<link rel="icon" href="{% static "img/Logo2.png" %}">
+<title>{% block title %}Login{% endblock title%}</title>
+
+<!-- ############################################ CSS #################################################### -->
+<link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.min.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "css/base.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "css/login.css" %}">
+<!-- ##################################################################################################### -->
+</head>
+<body>
+	<div class="container ">
+	<div>
+	<img alt="" src="{% static 'img/header_corazon.gif' %}" width="100%" height="80%">
+	</div>
+        <div class="cinta"></div>
+	<div class="content" style="margin: auto;">
+		<form class="form-signin" style="width: 30%; margin: auto;padding-top: 2%; " method="POST" action="">
+			<img style="margin: auto;" alt="" src="{% static 'img/logo.png' %}">
+			{% csrf_token %}
+			<h3 class="form-signin-heading"></h3>
+			
+			<label for="inputEmail" class="sr-only">Usuario</label> 
+			<input type="text" id="inputUser" name="inputUser" class="form-control" placeholder="User" required="required" autofocus> 
+			<br>
+			<label for="inputPassword" class="sr-only">Password</label>
+			<input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="Password" required="required">
+			<br>
+			<button class="btn btn-ttc btn-block btn-lg btn-primary"  type="submit">Entrar <div class="glyphicon glyphicon-log-in"></div> </button>
+		</form>
+	</div>
+
+	</div>
+	<!-- ######################################## JS ########################################################### -->
+	<script type="text/javascript" src="{% static "js/jquery-1.11.2.min.js" %}"></script>
+	<script type="text/javascript" src="{% static "js/bootstrap.min.js" %}"></script>
+	<!-- ####################################################################################################### -->
+</body>
+</html>
